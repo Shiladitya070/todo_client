@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { Todo } from "@/components/Todo";
 import Navbar from "@/components/Navbar";
+import AddTask from "@/components/AddTask";
 
 export default function Home() {
   const [todos, setTodos] = useState([
@@ -13,9 +14,15 @@ export default function Home() {
       Completed: false
     },
     {
+      id: 3,
+      Task: "Test 3 ",
+      description: "text time",
+      Completed: false
+    },
+    {
       id: 2,
       Task: "Task 2",
-      description: "test task",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quae natus totam optio dicta minima excepturi tenetur quibusdam at delectus. Veniam quaerat cumque alias pariatur sit corporis suscipit nihil quam.",
       Completed: true
     },
   ])
@@ -23,11 +30,16 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <div className="px-3">
-        {todos && todos.map((todo) => (
-          <Todo setTodo={setTodos} key={todo.id} {...todo} />
-        ))}
-      </div>
+      <div className="flex flex-col md:flex-row">
+        <div className="min-w-80">
+          <AddTask setTodos={setTodos} />
+        </div>
+        <div className="px-3 h-screen flex flex-col flex-wrap">
+          {todos && todos.map((todo) => (
+            <Todo key={todo.id} {...todo} />
+          ))}
+        </div>
+      </ div>
     </div>
   )
 }
